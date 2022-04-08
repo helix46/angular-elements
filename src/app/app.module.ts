@@ -1,16 +1,37 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+// import { NgModule } from '@angular/core';
+// import { BrowserModule } from '@angular/platform-browser';
+//
+// import {InfoBoxModule} from "./info-box/info-box.module";
+//
+// @NgModule({
+//   declarations: [
+//   ],
+//   imports: [
+//     BrowserModule,InfoBoxModule
+//   ],
+//   providers: [],
+//   bootstrap: []
+// })
+// export class AppModule { }
 
-import { AppComponent } from './app.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { NgModule, Injector } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
+
+import { InfoBoxComponent } from './info-box/info-box.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
+  declarations: [InfoBoxComponent],
+  imports: [BrowserModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  entryComponents: [InfoBoxComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(injector: Injector) {
+    const el = createCustomElement(InfoBoxComponent, { injector });
+    customElements.define('info-box', el);
+  }
+
+  ngDoBootstrap() {}
+}

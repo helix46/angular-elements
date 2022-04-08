@@ -3,10 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve -o",
+    "build": "ng build && cat dist/angular-web-component/main*.js dist/angular-web-component/polyfills*.js dist/angular-web-component/runtime*.js dist/angular-web-component/styles*.css > example/info-box.js",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "login": "az login",
+   "copy-blob": "az storage blob upload --account-name testelements  -f ./example/info-box.js -c test-angular-elements -n info-box"
   },
   "private": true,
   "dependencies": {
@@ -14,10 +16,12 @@
     "@angular/common": "~12.2.0",
     "@angular/compiler": "~12.2.0",
     "@angular/core": "~12.2.0",
+    "@angular/elements": "^12.2.16",
     "@angular/forms": "~12.2.0",
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "document-register-element": "^1.7.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
